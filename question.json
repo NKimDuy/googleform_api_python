@@ -1,0 +1,1036 @@
+{
+    "formId": "1RMu3NJGzC4kVqAQ2ln4w3MRH3BDuBvoygFndI9AE1mY",
+    "info": {
+        "title": "PHIẾU KHẢO SÁT Ý KIẾN SINH VIÊN VỀ HOẠT ĐỘNG GIẢNG DẠY CỦA SINH VIÊN Học kỳ 1 Năm học 2024 - 2025",
+        "description": "Nhằm tăng cường tinh thần trách nhiệm của người học với quyền lợi, nghĩa vụ học tập, rèn luyện của bản thân: tạo điều kiện để người học được phản ánh tâm tư, nguyện vọng, được thể hiện chính kiến, nhà trường thực hiện khảo sát ý kiến sinh viên về hoạt động giảng dạy của giảng viên. Các bạn sinh viên vui lòng dành thười gian trả lời những câu hỏi dưới đây:",
+        "documentTitle": "241 - ENGL1248 - BI202 - AV002"
+    },
+    "settings": {
+        "emailCollectionType": "VERIFIED"
+    },
+    "revisionId": "00000006",
+    "responderUri": "https://docs.google.com/forms/d/e/1FAIpQLSeo6_gSpx5n6ti9x_MOIaa3e-_Q3kPvkWJI0yH7aClki_JLuA/viewform",
+    "items": [
+        {
+            "itemId": "509fc045",
+            "pageBreakItem": {},
+            "title": "PHẦN 1: THÔNG TIN CHUNG"
+        },
+        {
+            "itemId": "1d266ab8",
+            "title": "Tên môn học:",
+            "questionItem": {
+                "question": {
+                    "questionId": "5d1fdb3f",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "ENGL1248 - Ngữ âm - Âm vị học"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "6f4c4f9c",
+            "title": "Tên giảng viên:",
+            "questionItem": {
+                "question": {
+                    "questionId": "5fc465f8",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "AV002 - Nguyễn Quốc Bảo"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "70c55dd9",
+            "title": "Tên địa phương:",
+            "questionItem": {
+                "question": {
+                    "questionId": "798a7541",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "BI202 - Ban Chỉ Huy Quân Sự Quận Bình Tân"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "4a7cfb59",
+            "title": "Mã số sinh viên:",
+            "questionItem": {
+                "question": {
+                    "questionId": "48c5b55d",
+                    "required": true,
+                    "textQuestion": {}
+                }
+            }
+        },
+        {
+            "itemId": "1845b290",
+            "pageBreakItem": {},
+            "title": "A: CHUẨN BỊ CHO MÔN HỌC"
+        },
+        {
+            "itemId": "53d52318",
+            "title": "Giảng viên (GV) giớ thiệu đề cương chi tiết và chuẩn đầu ra (CĐR) của môn học đầy đủ,rõ ràng trước khi bắt đầu môn học:",
+            "questionItem": {
+                "question": {
+                    "questionId": "0e6b267e",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "03abe4ad",
+            "title": "GV giải thích phương pháp kiểm tra, đánh giá rõ ràng (thời điểm, nội dung, phương pháp kiểm tra, đánh giá) nhằm giúp sinh viên (SV) đạt được chuẩn đầu ra:",
+            "questionItem": {
+                "question": {
+                    "questionId": "18ad4bc6",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "1c492a89",
+            "title": "GV giới thiệu nguồn tài liệu tham khảo:",
+            "questionItem": {
+                "question": {
+                    "questionId": "4b0baf59",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "00b91027",
+            "title": "Tài liệu được phát kịp thời cho môn học:",
+            "questionItem": {
+                "question": {
+                    "questionId": "6bde30e2",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "3df7524e",
+            "pageBreakItem": {},
+            "title": "B. PHƯƠNG PHÁP GIẢNG DẠY CỦA GIẢNG VIÊN"
+        },
+        {
+            "itemId": "6d277da5",
+            "title": "Phương pháp truyền đạt rõ ràng, dễ hiểu nhằm giúp SV đạt được chuẩn đầu ra:",
+            "questionItem": {
+                "question": {
+                    "questionId": "7bf8a231",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "678c704a",
+            "title": "Cách thức giảng dạy tạo hứng thú học tập cho người học:",
+            "questionItem": {
+                "question": {
+                    "questionId": "335aebff",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "49ce2a8f",
+            "title": "Tạo điều kiện để SV tham gia tích cực vào các hoạt động trong tiết học:",
+            "questionItem": {
+                "question": {
+                    "questionId": "7541db96",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "75956f7a",
+            "title": "Nêu vấn đề để SV tham gia tích cực vào các hoạt động trong tiết học:",
+            "questionItem": {
+                "question": {
+                    "questionId": "59764b2d",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "7506df65",
+            "title": "Hướng dẫn sinh viên cách tự học, tự nghiên cứu ngoài giờ học:",
+            "questionItem": {
+                "question": {
+                    "questionId": "324b5dee",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "12fde2ba",
+            "title": "Sử dụng hiệu quả các phương tiện dạy học (máy chiếu, internet...):",
+            "questionItem": {
+                "question": {
+                    "questionId": "59fe5b8e",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "716834de",
+            "title": "GV quan tâm đến việc tiếp thu bài giảng của sinh viên:",
+            "questionItem": {
+                "question": {
+                    "questionId": "7929ba1b",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "07b5467f",
+            "pageBreakItem": {},
+            "title": "Phương pháp truyền đạt rõ ràng, dễ hiểu nhằm giúp SV đạt được chuẩn đầu ra:"
+        },
+        {
+            "itemId": "73942852",
+            "title": "Nội dung bài giảng được trình bày đầy đủ theo đề cương chi tiết môn học:",
+            "questionItem": {
+                "question": {
+                    "questionId": "7bc27d00",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "55f124ef",
+            "title": "Bổ xung, cập nhật những vấn đề mới bên ngoài nội dung của giáo trình:",
+            "questionItem": {
+                "question": {
+                    "questionId": "56115460",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "7ee64694",
+            "title": "Nội dung môn học được cập nhật phù hợp với thực tiễn:",
+            "questionItem": {
+                "question": {
+                    "questionId": "3d1481b2",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "165293eb",
+            "pageBreakItem": {},
+            "title": "Phương pháp truyền đạt rõ ràng, dễ hiểu nhằm giúp SV đạt được chuẩn đầu ra:"
+        },
+        {
+            "itemId": "43618db3",
+            "title": "Thực hiện nghiêm túc giờ giấc giảng dạy, sử dụng hiệu quả thời gian lên lớp:",
+            "questionItem": {
+                "question": {
+                    "questionId": "760134ec",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "543961de",
+            "title": "Nhiệt tình và có trách nhiệm trong giảng dạy:",
+            "questionItem": {
+                "question": {
+                    "questionId": "6c0ea423",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "12a295c4",
+            "title": "Thể hiện tính chuẩn mực tác phong nhà giáo: trang phục, lời nới, cử chỉ:",
+            "questionItem": {
+                "question": {
+                    "questionId": "0f34e221",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "08bed742",
+            "title": "Có thái độ tôn trọng người học:",
+            "questionItem": {
+                "question": {
+                    "questionId": "171ccd3d",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "70dab5b1",
+            "title": "GV có sử dụng hiệu quả công nghệ hỗ trợ giảng dạy và học tập (Hệ thống quản lý học tập LMS):",
+            "questionItem": {
+                "question": {
+                    "questionId": "17e6acfc",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "13bdced4",
+            "title": "GV theo đúng thời khóa biểu nhà trường đã đề ra:",
+            "questionItem": {
+                "question": {
+                    "questionId": "708b8298",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "7ba483e5",
+            "title": "GV giảng dạy theo đúng tài liệu nhà trường đã cung cấp:",
+            "questionItem": {
+                "question": {
+                    "questionId": "008a4f37",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "4f03ddd0",
+            "title": "Thời lượng hướng dẫn/giảng dạy của môn học là phù hợp:",
+            "questionItem": {
+                "question": {
+                    "questionId": "4f860489",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "2382492f",
+            "pageBreakItem": {},
+            "title": "E. HOẠT ĐỘNG KIỂM TRA, ĐÁNH GIÁ QUÁ TRÌNH HỌC TẬP"
+        },
+        {
+            "itemId": "66f14594",
+            "title": "Kết quả kiểm tra giữa kỳ được GV công bố trước khi kết thúc môn học:",
+            "questionItem": {
+                "question": {
+                    "questionId": "7cfabd5f",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "0cb6c3c0",
+            "title": "GV sử dụng nhiều hình thức kiểm tra, đánh giá để tăng độ chính xác, tin cậy, tính giá trị trong đánh giá và đáp ứng CĐR:",
+            "questionItem": {
+                "question": {
+                    "questionId": "1c645d7e",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "7e47670b",
+            "title": "GV đánh giá công bằng và phản ánh đúng năng lực của SV theo chuẩn đầu ra (CĐR):",
+            "questionItem": {
+                "question": {
+                    "questionId": "3d2396e5",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "618958c9",
+            "title": "Nội dung kiểm tra phù hợp với nội dung giảng dạy và CĐR:",
+            "questionItem": {
+                "question": {
+                    "questionId": "18f6563b",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "6d8c7d1b",
+            "title": "Tài liệu học tập được cung cấp đúng với thông tin ghi trên đề cương môn học:",
+            "questionItem": {
+                "question": {
+                    "questionId": "0c4e8ae7",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Hoàn toàn không đồng ý"
+                            },
+                            {
+                                "value": "Không đồng ý"
+                            },
+                            {
+                                "value": "Phân vân"
+                            },
+                            {
+                                "value": "Đồng ý"
+                            },
+                            {
+                                "value": "Hoàn toàn đồng ý"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "2ebd31ae",
+            "pageBreakItem": {},
+            "title": "F. HOẠT ĐỘNG KIỂM TRA, ĐÁNH GIÁ QUÁ TRÌNH HỌC TẬP"
+        },
+        {
+            "itemId": "2c6a8043",
+            "title": "Anh/chị cho biết mức độ hài lòng về chất lượng giảng dạy của giảng viên:",
+            "questionItem": {
+                "question": {
+                    "questionId": "0145cf42",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Rất không hài lòng"
+                            },
+                            {
+                                "value": "Không hài lòng"
+                            },
+                            {
+                                "value": "Hài lòng trung bình"
+                            },
+                            {
+                                "value": "Khá hài lòng"
+                            },
+                            {
+                                "value": "Rất hài lòng"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "59937c98",
+            "title": "Anh/chị cho biết mức độ hài lòng về hiệu quả giảng dạy của giảng viên:",
+            "questionItem": {
+                "question": {
+                    "questionId": "406a37ba",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Rất không hài lòng"
+                            },
+                            {
+                                "value": "Không hài lòng"
+                            },
+                            {
+                                "value": "Hài lòng trung bình"
+                            },
+                            {
+                                "value": "Khá hài lòng"
+                            },
+                            {
+                                "value": "Rất hài lòng"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "7838bf80",
+            "title": "Nhìn chung (tổng thể), Anh/Chị cho biết mức độ hài lòng về chất lượng & hiệu quả giảng dạy của giảng viên:",
+            "questionItem": {
+                "question": {
+                    "questionId": "509fb388",
+                    "required": true,
+                    "choiceQuestion": {
+                        "type": "RADIO",
+                        "options": [
+                            {
+                                "value": "Rất không hài lòng"
+                            },
+                            {
+                                "value": "Không hài lòng"
+                            },
+                            {
+                                "value": "Hài lòng trung bình"
+                            },
+                            {
+                                "value": "Khá hài lòng"
+                            },
+                            {
+                                "value": "Rất hài lòng"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "itemId": "6017cbff",
+            "pageBreakItem": {},
+            "title": "Tổng kết:"
+        },
+        {
+            "itemId": "372acf59",
+            "title": "Ý kiến khác (nếu có):",
+            "questionItem": {
+                "question": {
+                    "questionId": "0f3d8e23",
+                    "textQuestion": {}
+                }
+            }
+        },
+        {
+            "itemId": "60665635",
+            "textItem": {},
+            "title": "LƯU Ý:",
+            "description": "Sinh viên cần tiếp tục thực hiện đánh giá các môn học khác cho đến khi đủ số môn học mà sinh viên đã đăng ký trong học kỳ này."
+        }
+    ]
+}
