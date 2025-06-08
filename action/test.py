@@ -2,32 +2,19 @@ from apiclient import discovery
 from httplib2 import Http
 from oauth2client import client, file, tools
 import os
-from openpyxl import load_workbook
+from openpyxl import load_workbook, Workbook
 import time
 
 
-# # Xác định phạm vi của form
-SCOPES = "https://www.googleapis.com/auth/forms.body"
-DISCOVERY_DOC = "https://forms.googleapis.com/$discovery/rest?version=v1"
-
-
-# đường dẫn đến các folder
-root_folder = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-authentication_dir = os.path.join(root_folder, "authentication", "duy.nguyen2@oude.edu.vn")
-export_file_dir = os.path.join(root_folder, "export_file")
-files_dir = os.path.join(root_folder, "files")
-files_subject = os.path.join(files_dir, "242_ds_mon_hoc.xlsx")
-
-
 #------------------------
-# xác thực người dùng
+# authen and author
 #------------------------
-def authen_and_author(SCOPES, token_file, client_secret_file):
-    store = file.Storage(os.path.join(authentication_dir, token_file))
+def authen_and_author(DISCOVERY_DOC, SCOPES, authentication_dir):
+    store = file.Storage(os.path.join(authentication_dir, "token.json"))
     creds = None
 
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets(os.path.join(authentication_dir, client_secret_file), SCOPES)
+        flow = client.flow_from_clientsecrets(os.path.join(authentication_dir, "client_secrets.json"), SCOPES)
         creds = tools.run_flow(flow, store)
 
     form_service = discovery.build(
@@ -42,20 +29,26 @@ def authen_and_author(SCOPES, token_file, client_secret_file):
 
 
 #------------------------
-# cấu trúc của form
+# form'name and info
 #------------------------
-def structure_form():
+def survey_form(semester, group):
     SURVEY_FORM = {
         "info": {
             "title": (
             "PHIẾU KHẢO SÁT Ý KIẾN SINH VIÊN "
             "VỀ HOẠT ĐỘNG GIẢNG DẠY CỦA SINH VIÊN "
-            "Học kỳ 1 Năm học 2024 - 2025"
+            "HỌC KỲ 2 NĂM HỌC 2024 - 2025"
             ),
-            "documentTitle": " - ".join([id_semester, id_subject, id_group, id_techer])
+            "documentTitle": " - ".join([semester, group])
         }
     }
+    return SURVEY_FORM
 
+
+#------------------------
+# add description form
+#------------------------
+def add_info():
     ADD_INFO = {
         "requests": [
             {
@@ -73,7 +66,13 @@ def structure_form():
             }
         ]
     }
+    return ADD_INFO
 
+
+#------------------------
+# add body form
+#------------------------
+def structure_form(option, link_unit_dir):
     NEW_QUESTION = {
         "requests": [
             {
@@ -88,15 +87,13 @@ def structure_form():
             {
             "createItem": {
                 "item": {
-                "title": "Tên môn học:",
+                "title": f"Tên môn học và giảng viên tại ({link_unit_dir}):",
                 "questionItem": {
                     "question": {
                     "required": True,
                     "choiceQuestion": {
-                        "type": "RADIO",
-                        "options": [
-                        {'value': " - ".join([id_subject, name_subject])}
-                        ]
+                        "type": "CHECKBOX",
+                        "options": option
                     }
                     }
                 }
@@ -104,44 +101,6 @@ def structure_form():
                 "location": {"index": 1},
             }
             }, 
-            {
-            "createItem": {
-                "item": {
-                "title": "Tên giảng viên:",
-                "questionItem": {
-                    "question": {
-                    "required": True,
-                    "choiceQuestion": {
-                        "type": "RADIO",
-                        "options": [
-                        {'value': " - ".join([id_techer, name_teacher])}
-                        ]
-                    }
-                    }
-                }
-                },
-                "location": {"index": 2},
-            }
-            },
-            {
-            "createItem": {
-                "item": {
-                "title": "Tên địa phương:",
-                "questionItem": {
-                    "question": {
-                    "required": True,
-                    "choiceQuestion": {
-                        "type": "RADIO",
-                        "options": [
-                        {'value': " - ".join([id_group, name_link_unit])}
-                        ]
-                    }
-                    }
-                }
-                },
-                "location": {"index": 3},
-            }
-            },
             {
             "createItem": {
                 "item": {
@@ -153,7 +112,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 4}
+                "location": {"index": 2}
             }
             },
             {
@@ -162,7 +121,7 @@ def structure_form():
                 "title": "A: CHUẨN BỊ CHO MÔN HỌC",
                 "pageBreakItem": {}
                 },
-                "location": {"index": 5}
+                "location": {"index": 3}
             }
             },
             {
@@ -185,7 +144,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 6}
+                "location": {"index": 4}
             }
             },
             {
@@ -208,7 +167,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 7}
+                "location": {"index": 5}
             }
             },
             {
@@ -231,7 +190,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 8}
+                "location": {"index": 6}
             }
             },
             {
@@ -254,7 +213,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 9}
+                "location": {"index": 7}
             }
             },
             {
@@ -263,7 +222,7 @@ def structure_form():
                 "title": "B. PHƯƠNG PHÁP GIẢNG DẠY CỦA GIẢNG VIÊN",
                 "pageBreakItem": {}
                 },
-                "location": {"index": 10}
+                "location": {"index": 8}
             }
             },
             {
@@ -286,7 +245,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 11}
+                "location": {"index": 9}
             }
             },
             {
@@ -309,7 +268,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 12}
+                "location": {"index": 10}
             }
             },
             {
@@ -332,7 +291,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 13}
+                "location": {"index": 11}
             }
             },
             {
@@ -355,7 +314,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 14}
+                "location": {"index": 12}
             }
             },
             {
@@ -378,7 +337,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 15}
+                "location": {"index": 13}
             }
             },
             {
@@ -401,7 +360,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 16}
+                "location": {"index": 14}
             }
             },
             {
@@ -424,7 +383,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 17}
+                "location": {"index": 15}
             }
             },
             {
@@ -433,7 +392,7 @@ def structure_form():
                 "title": "Phương pháp truyền đạt rõ ràng, dễ hiểu nhằm giúp SV đạt được chuẩn đầu ra:",
                 "pageBreakItem": {}
                 },
-                "location": {"index": 18}
+                "location": {"index": 16}
             }
             },
             {
@@ -456,7 +415,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 19}
+                "location": {"index": 17}
             }
             },
             {
@@ -479,7 +438,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 20}
+                "location": {"index": 18}
             }
             },
             {
@@ -502,7 +461,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 21}
+                "location": {"index": 19}
             }
             },
             {
@@ -511,7 +470,7 @@ def structure_form():
                 "title": "Phương pháp truyền đạt rõ ràng, dễ hiểu nhằm giúp SV đạt được chuẩn đầu ra:",
                 "pageBreakItem": {}
                 },
-                "location": {"index": 22}
+                "location": {"index": 20}
             }
             },
             {
@@ -534,7 +493,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 23}
+                "location": {"index": 21}
             }
             },
             {
@@ -557,7 +516,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 24}
+                "location": {"index": 22}
             }
             },
             {
@@ -580,7 +539,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 25}
+                "location": {"index": 23}
             }
             },
             {
@@ -603,7 +562,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 26}
+                "location": {"index": 24}
             }
             },
             {
@@ -626,7 +585,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 27}
+                "location": {"index": 25}
             }
             },
             {
@@ -649,7 +608,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 28}
+                "location": {"index": 26}
             }
             },
             {
@@ -672,7 +631,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 29}
+                "location": {"index": 27}
             }
             },
             {
@@ -695,7 +654,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 30}
+                "location": {"index": 28}
             }
             },
             {
@@ -704,7 +663,7 @@ def structure_form():
                 "title": "E. HOẠT ĐỘNG KIỂM TRA, ĐÁNH GIÁ QUÁ TRÌNH HỌC TẬP",
                 "pageBreakItem": {}
                 },
-                "location": {"index": 31}
+                "location": {"index": 29}
             }
             },
             {
@@ -727,7 +686,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 32}
+                "location": {"index": 30}
             }
             },
             {
@@ -750,7 +709,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 33}
+                "location": {"index": 31}
             }
             },
             {
@@ -773,7 +732,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 34}
+                "location": {"index": 32}
             }
             },
             {
@@ -796,7 +755,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 35}
+                "location": {"index": 33}
             }
             },
             {
@@ -819,7 +778,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 36}
+                "location": {"index": 34}
             }
             },
             {
@@ -828,7 +787,7 @@ def structure_form():
                 "title": "F. HOẠT ĐỘNG KIỂM TRA, ĐÁNH GIÁ QUÁ TRÌNH HỌC TẬP",
                 "pageBreakItem": {}
                 },
-                "location": {"index": 37}
+                "location": {"index": 35}
             }
             },
             {
@@ -851,7 +810,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 38}
+                "location": {"index": 36}
             }
             },
             {
@@ -874,7 +833,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 39}
+                "location": {"index": 37}
             }
             },
             {
@@ -897,7 +856,7 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 40}
+                "location": {"index": 38}
             }
             },
             {
@@ -906,7 +865,7 @@ def structure_form():
                 "title": "Tổng kết:",
                 "pageBreakItem": {}
                 },
-                "location": {"index": 41}
+                "location": {"index": 39}
             }
             },
             {
@@ -920,109 +879,157 @@ def structure_form():
                     }
                 }
                 },
-                "location": {"index": 42}
+                "location": {"index": 40}
             }
             },
-            {
-            "createItem": {
-                "item": {
-                   "title": "LƯU Ý:",
-                   "description": (
-                      "Sinh viên cần tiếp tục thực hiện đánh giá các môn học khác"
-                      " cho đến khi đủ số môn học mà sinh viên đã đăng ký trong học kỳ này."
-                   ),
-                   "textItem": {}
-                },
-                "location": {"index": 43}
-            }
-            },
+            # {
+            # "createItem": {
+            #     "item": {
+            #        "title": "LƯU Ý:",
+            #        "description": (
+            #           "Sinh viên cần tiếp tục thực hiện đánh giá các môn học khác"
+            #           " cho đến khi đủ số môn học mà sinh viên đã đăng ký trong học kỳ này."
+            #        ),
+            #        "textItem": {}
+            #     },
+            #     "location": {"index": 41}
+            # }
+            # },
         ]
     }
+    return NEW_QUESTION
 
-
-
-# Đọc file excel
-wb = load_workbook(files_subject)
-ws = wb.active
-
-# Xác định vị trí bắt đầu tạo form
-begin_create = 2
-# for i in range(2, ws.max_row + 1):
-#    if ws.cell(i, 31).value is not None:
-#       begin_create += 1
-
-
-# print(f"Bắt đầu chạy từ số thứ tự là: {begin_create - 1}")
 
 #------------------------
-# 1: id_subject
-# 2: name_subject
-# 5: id_class
-# 8: id_group
-# 14: id_link_unit
-# 15: name_link_unit
-# 10: id_teacher
-# 11: name_teacher
-# 30: name_manager
+# form'name and info + add description form + add body form
 #------------------------
-data_subject = {}
-data_teacher = {}
-for row in ws.iter_rows(min_row=2, values_only=True):
-    id_subject = row[0]
-    name_subject = row[1]
-    group = row[7]
-    id_teacher = row[9] 
-    name_teacher = row[10]
-    if group not in data_subject:
-        data_subject[group] = []
-        data_teacher[group] = []
-    data_subject[group].append(id_subject + "-" + name_subject)
-    data_teacher[group].append(id_teacher + "-" + name_teacher)
+def completed_form(form_service, semester_dir, grp, option, link_unit_dir, link_unit):
+    # TODO: created form
+    SURVEY_FORM = survey_form(semester_dir, grp)
+    result = form_service.forms().create(body=SURVEY_FORM).execute()
 
-print(data_subject["NH122"])
-print(data_teacher["NH122"])
-#for i in range(begin_create, ws.max_row + 1):
-    
-    # id_semester = "241"
-    # id_subject = ws.cell(i, 1).value
-    # name_subject = ws.cell(i, 2).value
-    # id_class = ws.cell(i, 5).value
-    # id_group = ws.cell(i, 8).value
-    # id_link_unit = ws.cell(i, 14).value
-    # name_link_unit = ws.cell(i, 15).value
-    # id_techer = ws.cell(i, 10).value
-    # name_teacher = ws.cell(i, 11).value
-    # name_manager = ws.cell(i, 30).value
+    # TODO: added form info
+    ADD_INFO = add_info()
+    question_setting = (
+        form_service.forms()
+        .batchUpdate(formId=result["formId"], body=ADD_INFO)
+        .execute()
+    )
 
-    # if not os.path.exists(os.path.join(export_file_dir, name_manager)):
-    #     os.makedirs(os.path.join(export_file_dir, name_manager))
-    # link_manager = os.path.join(export_file_dir, name_manager)
-    # if not os.path.exists(os.path.join(link_manager, id_link_unit, name_link_unit)):
-    #     os.makedirs(os.path.join(link_manager, id_link_unit, name_link_unit))
-    # link_unit = os.path.join(link_manager, id_link_unit, name_link_unit)
-    # if not os.path.exists(os.path.join(link_unit, id_class)):
-    #     os.makedirs(os.path.join(link_unit, id_class))
-    
+    # TODO: added body form
+    NEW_QUESTION = structure_form(option, link_unit_dir)
+    question_setting = (
+        form_service.forms()
+        .batchUpdate(formId=result["formId"], body=NEW_QUESTION)
+        .execute()
+    )
+
+    # TODO: saved form path to file
+    form_id = result["formId"]
+    name_file = "".join([grp, ".txt"])
+    with open(os.path.join(link_unit, name_file), "w", encoding="utf-8") as file:
+        file.write(f"https://docs.google.com/forms/d/{form_id}/viewform")
+
+    return form_id
 
 
+#------------------------
+# loaded excel file, make dir and created log file
+#------------------------
+def read_file_and_create_form(form_service, export_dir, file, semester_dir):
+    wb_subject = load_workbook(file)
+    ws_subject = wb_subject.active
 
-    # # Khởi tạo form trống
-    # result = form_service.forms().create(body=SURVEY_FORM).execute()
+    # TODO: check log file exist or no
+    log_file = os.path.join(export_dir, "log.xlsx")
+    if not os.path.exists(log_file): # if log file not existed
+        wb_create_log = Workbook()
+        ws_create_log = wb_create_log.active
+        ws_create_log.title = "log file"
+        wb_create_log.save(log_file)
+    wb_load_log = load_workbook(log_file) # if log file existed then created file
+    ws_load_log = wb_load_log.active
 
+    data_subject = {} # store subject
+    data_teacher = {} # store teacher
+    data_manager = {} # store name manager
+    data_unit = {} # store unit
+    for row in ws_subject.iter_rows(min_row=2, values_only=True):
+        id_subject = row[0]
+        name_subject = row[1]
+        group = row[7]
+        id_teacher = row[9] 
+        name_teacher = row[10]
+        name_manager = row[21]
+        id_unit = row[13]
+        name_unit = row[14]
 
-    # # Thêm description vào form
-    # question_setting = (
-    #     form_service.forms()
-    #     .batchUpdate(formId=result["formId"], body=ADD_INFO)
-    #     .execute()
-    # )
+        # TODO: read excel file, and attached to array
+        if group not in data_subject:
+            data_subject[group] = []
+            data_teacher[group] = []
+            data_manager[group] = []
+            data_unit[group] = []
+        data_subject[group].append(id_subject + "-" + name_subject)
+        data_teacher[group].append(id_teacher + "-" + name_teacher)
+        data_manager[group].append(name_manager)
+        data_unit[group].append(id_unit + "-" + name_unit)
 
+    # TODO: loop through each subject with corresponding instructor
+    for grp in data_subject:
+        name_manager_dir = list(set(data_manager[grp]))[0] # get unique manager 
+        link_unit_dir = list(set(data_unit[grp]))[0] # get unique manager
 
-    # # Thêm các câu hỏi vào form
-    # question_setting = (
-    #     form_service.forms()
-    #     .batchUpdate(formId=result["formId"], body=NEW_QUESTION)
-    #     .execute()
-    # )
+        # TODO: create or open semester dir
+        if not os.path.exists(os.path.join(export_dir, semester_dir)):
+            os.makedirs(os.path.join(export_dir, semester_dir))
+        link_semester = os.path.join(export_dir, semester_dir)
 
+        # TODO: create or open manager dir
+        if not os.path.exists(os.path.join(link_semester, name_manager_dir)):
+            os.makedirs(os.path.join(link_semester, name_manager_dir))
+        link_manager = os.path.join(link_semester, name_manager_dir)
+        
+        # TODO: create or open unit dir
+        if not os.path.exists(os.path.join(link_manager, link_unit_dir)):
+            os.makedirs(os.path.join(link_manager, link_unit_dir))
+        link_unit = os.path.join(link_manager, link_unit_dir)
 
+        # TODO: assign a value to the option of CHECKBOX in the following format: value: (subject) (teacher)
+        option = []
+        for i in range(len(data_subject[grp])):
+            option.append({"value": f"({data_subject[grp][i]}) ({data_teacher[grp][i]})"})
+        
+        # TODO: check if log file have or not have data
+        has_data = any(row for row in ws_load_log.iter_rows(min_row=2, values_only=True) if any(row)) # return true, if at least one value is True 
+        if has_data:
+            # TODO: check group exist in log file 
+            group_in_log = [row[0].value for row in ws_load_log.iter_rows(min_row=1)]
+            if grp not in group_in_log:
+                print(f"Bắt đầu ghi tiếp tục vào file từ dòng: {ws_load_log.max_row}: {grp} - {link_unit_dir} - {name_manager_dir} - {form_id}")
+                form_id = completed_form(form_service, semester_dir, grp, option, link_unit_dir, link_unit)
+                ws_load_log.append([grp, link_unit_dir, name_manager_dir, form_id])
+                wb_load_log.save(log_file)
+        else:
+            print(f"Bắt đầu ghi mới vào file: {grp} - {link_unit_dir} - {name_manager_dir} - {form_id}")
+            form_id = completed_form(form_service, semester_dir, grp, option, link_unit_dir, link_unit)
+            ws_load_log.append([grp, link_unit_dir, name_manager_dir, form_id])
+            wb_load_log.save(log_file)
+            
+
+def main():
+    # TODO: scope of form
+    SCOPES = "https://www.googleapis.com/auth/forms.body"
+    DISCOVERY_DOC = "https://forms.googleapis.com/$discovery/rest?version=v1"
+
+    root_folder = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    authentication_dir = os.path.join(root_folder, "authentication", "duy.nguyen2@oude.edu.vn")
+    export_dir = os.path.join(root_folder, "export_file")
+    files_dir = os.path.join(root_folder, "files")
+    files_subject = os.path.join(files_dir, "test.xlsx")
+
+    form_service = authen_and_author(DISCOVERY_DOC, SCOPES, authentication_dir) # authen and author
+    read_file_and_create_form(form_service, export_dir, files_subject, "242") # create form
+
+if __name__ == "__main__":
+      main()
