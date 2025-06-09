@@ -177,3 +177,32 @@ wb.save(files_subject)
 #print(col_title)
 
 #wb.save(files_subject)
+
+
+# chia mảng lớn thành các mảng nhỏ dựa trên giá trị neo trong mảng cha
+# result = [list(group) for k, group in groupby(lst, key=lambda x: x != 'x') if k]
+
+
+# tách các môn từ 1 dòng thành nhiều dòng
+# from collections import defaultdict
+
+# # Giả sử response là 1 dictionary của 1 dòng từ Google Form
+# response = {
+#     "Môn A - Câu 1": "Đồng ý",
+#     "Môn A - Câu 2": "Không đồng ý",
+#     "Môn A - Câu 3": "Phân vân",
+#     "Môn B - Câu 1": "Đồng ý",
+#     "Môn B - Câu 2": "Đồng ý",
+#     "Môn B - Câu 3": "Đồng ý"
+# }
+
+# # Gom câu trả lời theo môn
+# mon_dict = defaultdict(dict)
+
+# for key, value in response.items():
+#     mon, cau = key.split(" - ", maxsplit=1)
+#     mon_dict[mon][cau] = value
+
+# # In ra từng dòng một cho mỗi môn
+# for mon, cau_tra_loi in mon_dict.items():
+#     print(f"{mon}: {cau_tra_loi}")

@@ -58,7 +58,7 @@ def add_info():
                     "Nhằm tăng cường tinh thần trách nhiệm của người học với quyền lợi, nghĩa vụ học tập, rèn luyện của bản thân: "
                     "tạo điều kiện để người học được phản ánh tâm tư, nguyện vọng, được thể hiện chính kiến, "
                     "nhà trường thực hiện khảo sát ý kiến sinh viên về hoạt động giảng dạy của giảng viên. "
-                    "Các bạn sinh viên vui lòng dành thười gian trả lời những câu hỏi dưới đây:"
+                    "Các bạn sinh viên vui lòng dành thời gian trả lời những câu hỏi dưới đây:"
                 )
                 },
                 "updateMask": "description",
@@ -882,19 +882,19 @@ def structure_form(option, link_unit_dir):
                 "location": {"index": 40}
             }
             },
-            # {
-            # "createItem": {
-            #     "item": {
-            #        "title": "LƯU Ý:",
-            #        "description": (
-            #           "Sinh viên cần tiếp tục thực hiện đánh giá các môn học khác"
-            #           " cho đến khi đủ số môn học mà sinh viên đã đăng ký trong học kỳ này."
-            #        ),
-            #        "textItem": {}
-            #     },
-            #     "location": {"index": 41}
-            # }
-            # },
+            {
+            "createItem": {
+                "item": {
+                   "title": "LƯU Ý:",
+                   "description": (
+                      "Sinh viên cần tiếp tục thực hiện đánh giá các môn học khác"
+                      " cho đến khi đủ số môn học mà sinh viên đã đăng ký trong học kỳ này."
+                   ),
+                   "textItem": {}
+                },
+                "location": {"index": 41}
+            }
+            },
         ]
     }
     return NEW_QUESTION
