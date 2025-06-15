@@ -31,52 +31,60 @@ def authen_and_author(DISCOVERY_DOC, SCOPES, authentication_dir):
 #------------------------
 # form'name and info
 #------------------------
-def survey_form(semester, group):
-    SURVEY_FORM = {
-        "info": {
+def create_form_id(form_service, semester, group):
+      SURVEY_FORM = {
+            "info": {
             "title": (
             "PHIẾU KHẢO SÁT Ý KIẾN SINH VIÊN "
             "VỀ HOẠT ĐỘNG GIẢNG DẠY CỦA SINH VIÊN "
             "HỌC KỲ 2 NĂM HỌC 2024 - 2025"
             ),
             "documentTitle": " - ".join([semester, group])
-        }
-    }
-    return SURVEY_FORM
+            }
+      }
+
+      # TODO: saved form path to file
+      result = form_service.forms().create(body=SURVEY_FORM).execute()
+      form_id = result["formId"]
+      return form_id
 
 
 #------------------------
 # add description form
 #------------------------
-def add_info():
-    ADD_INFO = {
-        "requests": [
+def add_info_form(form_service, form_id):
+      ADD_INFO = {
+            "requests": [
             {
             "updateFormInfo": {
-                "info": {
-                "description": (
-                    "Nhằm tăng cường tinh thần trách nhiệm của người học với quyền lợi, nghĩa vụ học tập, rèn luyện của bản thân: "
-                    "tạo điều kiện để người học được phản ánh tâm tư, nguyện vọng, được thể hiện chính kiến, "
-                    "nhà trường thực hiện khảo sát ý kiến sinh viên về hoạt động giảng dạy của giảng viên. "
-                    "Các bạn sinh viên vui lòng dành thời gian trả lời những câu hỏi dưới đây:"
-                )
-                },
-                "updateMask": "description",
+                  "info": {
+                  "description": (
+                        "Nhằm tăng cường tinh thần trách nhiệm của người học với quyền lợi, nghĩa vụ học tập, rèn luyện của bản thân: "
+                        "tạo điều kiện để người học được phản ánh tâm tư, nguyện vọng, được thể hiện chính kiến, "
+                        "nhà trường thực hiện khảo sát ý kiến sinh viên về hoạt động giảng dạy của giảng viên. "
+                        "Các bạn sinh viên vui lòng dành thời gian trả lời những câu hỏi dưới đây:"
+                  )
+                  },
+                  "updateMask": "description",
             }
             }
-        ]
-    }
-    return ADD_INFO
+            ]
+      }
+      form_service.forms().batchUpdate(formId=form_id, body=ADD_INFO).execute()
 
 
-def header_form():
+
+#------------------------
+# add header form
+#------------------------
+def add_header_form(form_service, form_id):
       NEW_HEADER = {
             "requests": [
                   {
                         "createItem": {
                               "item": {
                                     "title": "PHẦN 1: THÔNG TIN CHUNG",
-                                    "pageBreakItem": {}
+                                    "textItem": {}
                               },
                               "location": {"index": 0},
                         }
@@ -92,7 +100,7 @@ def header_form():
                                           }
                                     }
                               },
-                              "location": {"index": 1}
+                              "location": {"index": 1},
                         }
                   },
                   {
@@ -102,20 +110,38 @@ def header_form():
                                     "description": "Sinh viên vui lòng làm khảo sát hết tất cả các môn đã đăng ký",
                                     "pageBreakItem": {}
                               },
-                              "location": {"index": 2}
+                              "location": {"index": 2},
                         }
                   }
             ]   
       }
-      return NEW_HEADER
+      form_service.forms().batchUpdate(formId=form_id, body=NEW_HEADER).execute()
 
 
 #------------------------
 # add body form
 #------------------------
-def structure_form(option, link_unit_dir):
+def add_body_form(form_service, form_id, link_unit_dir, subject, teacher, location):
       NEW_QUESTION = {
             "requests": [
+                  {
+                        "createItem": {
+                              "item": {
+                                    "title": f"({link_unit_dir}) thông tin môn học: ",
+                                    "questionItem": {
+                                          "question": {
+                                                "choiceQuestion": {
+                                                      "type": "RADIO",
+                                                      "options": [
+                                                            {"value": f"📌📌📌 ({subject}) ({teacher})"}
+                                                      ]
+                                                }
+                                          }
+                                    }
+                              },
+                              "location": {"index": location + 1}
+                        }
+                  },
                   {
                         "createItem": {
                               "item": {
@@ -134,7 +160,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 2}
                         }
                   },
                   {
@@ -155,7 +182,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 3}
                         }
                   },
                   {
@@ -176,7 +204,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 4}
                         }
                   },
                   {
@@ -197,7 +226,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 5}
                         }
                   },
                   {
@@ -218,7 +248,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 6}
                         }
                   },
                   {
@@ -239,7 +270,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 7}
                         }
                   },
                   {
@@ -260,7 +292,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 8}
                         }
                   },
                   {
@@ -281,7 +314,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 9}
                         }
                   },
                   {
@@ -302,7 +336,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 10}
                         }
                   },
                   {
@@ -323,7 +358,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 11}
                         }
                   },
                   {
@@ -344,7 +380,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 12}
                         }
                   },
                   {
@@ -365,7 +402,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 13}
                         }
                   },
                   {
@@ -386,7 +424,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 14}
                         }
                   },
                   {
@@ -407,7 +446,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 15}
                         }
                   },
                   {
@@ -428,7 +468,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 16}
                         }
                   },
                   {
@@ -449,7 +490,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 17}
                         }
                   },
                   {
@@ -470,7 +512,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 18}
                         }
                   },
                   {
@@ -491,7 +534,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 19}
                         }
                   },
                   {
@@ -512,7 +556,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 20}
                         }
                   },
                   {
@@ -533,7 +578,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 21}
                         }
                   },
                   {
@@ -554,7 +600,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 22}
                         }
                   },
                   {
@@ -575,7 +622,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 23}
                         }
                   },
                   {
@@ -596,7 +644,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 24}
                         }
                   },
                   {
@@ -617,7 +666,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 25}
                         }
                   },
                   {
@@ -638,7 +688,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 26}
                         }
                   },
                   {
@@ -659,7 +710,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 27}
                         }
                   },
                   {
@@ -680,7 +732,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 28}
                         }
                   },
                   {
@@ -701,7 +754,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 29}
                         }
                   },
                   {
@@ -722,7 +776,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 30}
                         }
                   },
                   {
@@ -743,7 +798,8 @@ def structure_form(option, link_unit_dir):
                                                 }
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 31}
                         }
                   },
                   {
@@ -755,129 +811,142 @@ def structure_form(option, link_unit_dir):
                                           "textQuestion": {}
                                           }
                                     }
-                              }
+                              },
+                              "location": {"index": location + 32}
                         }
                   },
+                  {
+                        "createItem": {
+                              "item": {
+                                    "title": "ĐÁNH GIÁ MÔN HỌC",
+                                    "pageBreakItem": {}
+                              },
+                              "location": {"index": location + 33}
+                        }
+                  }
             ]
       }
-      return NEW_QUESTION
+      form_service.forms().batchUpdate(formId=form_id, body=NEW_QUESTION).execute()
 
 
 #------------------------
 # form'name and info + add description form + add body form
 #------------------------
-def completed_form(form_service, semester_dir, grp, option, link_unit_dir, link_unit):
-    # TODO: created form
-    SURVEY_FORM = survey_form(semester_dir, grp)
-    result = form_service.forms().create(body=SURVEY_FORM).execute()
+def completed_form(grp, link_unit):
 
-    # TODO: added form info
-    ADD_INFO = add_info()
-    question_setting = (
-        form_service.forms()
-        .batchUpdate(formId=result["formId"], body=ADD_INFO)
-        .execute()
-    )
+      form_id = "a"
 
-    # TODO: added body form
-    NEW_QUESTION = structure_form(option, link_unit_dir)
-    question_setting = (
-        form_service.forms()
-        .batchUpdate(formId=result["formId"], body=NEW_QUESTION)
-        .execute()
-    )
-
-    # TODO: saved form path to file
-    form_id = result["formId"]
-    name_file = "".join([grp, ".txt"])
-    with open(os.path.join(link_unit, name_file), "w", encoding="utf-8") as file:
-        file.write(f"https://docs.google.com/forms/d/{form_id}/viewform")
-
-    return form_id
+      # TODO: saved form path to file
+      name_file = "".join([grp, ".txt"])
+      with open(os.path.join(link_unit, name_file), "w", encoding="utf-8") as file:
+            file.write(f"https://docs.google.com/forms/d/{form_id}/viewform")
+      return form_id
 
 
 #------------------------
 # loaded excel file, make dir and created log file
 #------------------------
 def read_file_and_create_form(form_service, export_dir, file, semester_dir):
-    wb_subject = load_workbook(file)
-    ws_subject = wb_subject.active
+      wb_subject = load_workbook(file)
+      ws_subject = wb_subject.active
 
-    # TODO: check log file exist or no
-    log_file = os.path.join(export_dir, "log.xlsx")
-    if not os.path.exists(log_file): # if log file not existed
-        wb_create_log = Workbook()
-        ws_create_log = wb_create_log.active
-        ws_create_log.title = "log file"
-        wb_create_log.save(log_file)
-    wb_load_log = load_workbook(log_file) # if log file existed then created file
-    ws_load_log = wb_load_log.active
+      # TODO: check log file exist or no
+      log_file = os.path.join(export_dir, "log.xlsx")
+      if not os.path.exists(log_file): # if log file not existed
+            wb_create_log = Workbook()
+            ws_create_log = wb_create_log.active
+            ws_create_log.title = "log file"
+            wb_create_log.save(log_file)
+      wb_load_log = load_workbook(log_file) # if log file existed then created file
+      ws_load_log = wb_load_log.active
 
-    data_subject = {} # store subject
-    data_teacher = {} # store teacher
-    data_manager = {} # store name manager
-    data_unit = {} # store unit
-    for row in ws_subject.iter_rows(min_row=2, values_only=True):
-        id_subject = row[0]
-        name_subject = row[1]
-        group = row[7]
-        id_teacher = row[9] 
-        name_teacher = row[10]
-        name_manager = row[21]
-        id_unit = row[13]
-        name_unit = row[14]
+      data_subject = {} # store subject
+      data_teacher = {} # store teacher
+      data_manager = {} # store name manager
+      data_unit = {} # store unit
+      for row in ws_subject.iter_rows(min_row=2, values_only=True):
+            id_subject = row[0]
+            name_subject = row[1]
+            group = row[7]
+            id_teacher = row[9] 
+            name_teacher = row[10]
+            name_manager = row[21]
+            id_unit = row[13]
+            name_unit = row[14]
 
-        # TODO: read excel file, and attached to array
-        if group not in data_subject:
-            data_subject[group] = []
-            data_teacher[group] = []
-            data_manager[group] = []
-            data_unit[group] = []
-        data_subject[group].append(id_subject + "-" + name_subject)
-        data_teacher[group].append(id_teacher + "-" + name_teacher)
-        data_manager[group].append(name_manager)
-        data_unit[group].append(id_unit + "-" + name_unit)
+            # TODO: read excel file, and attached to array
+            if group not in data_subject:
+                  data_subject[group] = []
+                  data_teacher[group] = []
+                  data_manager[group] = []
+                  data_unit[group] = []
+            data_subject[group].append(id_subject + "-" + name_subject)
+            data_teacher[group].append(id_teacher + "-" + name_teacher)
+            data_manager[group].append(name_manager)
+            data_unit[group].append(id_unit + "-" + name_unit)
 
-    # TODO: loop through each subject with corresponding instructor
-    for grp in data_subject:
-        name_manager_dir = list(set(data_manager[grp]))[0] # get unique manager 
-        link_unit_dir = list(set(data_unit[grp]))[0] # get unique manager
+      # TODO: loop through each subject with corresponding instructor
+      for grp in data_subject:
+            name_manager_dir = list(set(data_manager[grp]))[0] # get unique manager 
+            link_unit_dir = list(set(data_unit[grp]))[0] # get unique link unit
 
-        # TODO: create or open semester dir
-        if not os.path.exists(os.path.join(export_dir, semester_dir)):
-            os.makedirs(os.path.join(export_dir, semester_dir))
-        link_semester = os.path.join(export_dir, semester_dir)
+            # TODO: create or open semester dir
+            if not os.path.exists(os.path.join(export_dir, semester_dir)):
+                  os.makedirs(os.path.join(export_dir, semester_dir))
+            link_semester = os.path.join(export_dir, semester_dir)
 
-        # TODO: create or open manager dir
-        if not os.path.exists(os.path.join(link_semester, name_manager_dir)):
-            os.makedirs(os.path.join(link_semester, name_manager_dir))
-        link_manager = os.path.join(link_semester, name_manager_dir)
-        
-        # TODO: create or open unit dir
-        if not os.path.exists(os.path.join(link_manager, link_unit_dir)):
-            os.makedirs(os.path.join(link_manager, link_unit_dir))
-        link_unit = os.path.join(link_manager, link_unit_dir)
+            # TODO: create or open manager dir
+            if not os.path.exists(os.path.join(link_semester, name_manager_dir)):
+                  os.makedirs(os.path.join(link_semester, name_manager_dir))
+            link_manager = os.path.join(link_semester, name_manager_dir)
+            
+            # TODO: create or open unit dir
+            if not os.path.exists(os.path.join(link_manager, link_unit_dir)):
+                  os.makedirs(os.path.join(link_manager, link_unit_dir))
+            link_unit = os.path.join(link_manager, link_unit_dir)
+            
+            # TODO: check if log file have or not have data
+            has_data = any(row for row in ws_load_log.iter_rows(min_row=1, values_only=True) if any(row)) # return true, if at least one value is True 
+            if has_data:
+                  # TODO: check group exist in log file 
+                  group_in_log = [row[0].value for row in ws_load_log.iter_rows(min_row=1)]
+                  if grp not in group_in_log:
 
-        # TODO: assign a value to the option of CHECKBOX in the following format: value: (subject) (teacher)
-        option = []
-        for i in range(len(data_subject[grp])):
-            option.append({"value": f"({data_subject[grp][i]}) ({data_teacher[grp][i]})"})
-        
-        # TODO: check if log file have or not have data
-        has_data = any(row for row in ws_load_log.iter_rows(min_row=2, values_only=True) if any(row)) # return true, if at least one value is True 
-        if has_data:
-            # TODO: check group exist in log file 
-            group_in_log = [row[0].value for row in ws_load_log.iter_rows(min_row=1)]
-            if grp not in group_in_log:
-                print(f"Bắt đầu ghi tiếp tục vào file từ dòng: {ws_load_log.max_row}: {grp} - {link_unit_dir} - {name_manager_dir} - {form_id}")
-                form_id = completed_form(form_service, semester_dir, grp, option, link_unit_dir, link_unit)
-                ws_load_log.append([grp, link_unit_dir, name_manager_dir, form_id])
-                wb_load_log.save(log_file)
-        else:
-            print(f"Bắt đầu ghi mới vào file: {grp} - {link_unit_dir} - {name_manager_dir} - {form_id}")
-            form_id = completed_form(form_service, semester_dir, grp, option, link_unit_dir, link_unit)
-            ws_load_log.append([grp, link_unit_dir, name_manager_dir, form_id])
-            wb_load_log.save(log_file)
+                        form_id = create_form_id(form_service, semester_dir, grp)
+                        add_info_form(form_service, form_id)
+                        add_header_form(form_service, form_id)
+                        
+                        location = 2
+                        for i in range(len(data_subject[grp])):
+                              print(f"{location} - {data_subject[grp][i]} - {data_teacher[grp][i]}")
+                              add_body_form(form_service, form_id, link_unit_dir, data_subject[grp][i], data_teacher[grp][i], location)
+                              location += 33
+
+                        name_file = "".join([grp, ".txt"])
+                        with open(os.path.join(link_unit, name_file), "w", encoding="utf-8") as file:
+                              file.write(f"https://docs.google.com/forms/d/{form_id}/viewform")
+                  
+                        print(f"Bắt đầu ghi tiếp tục vào file từ dòng: {ws_load_log.max_row}: {grp} - {link_unit_dir} - {name_manager_dir} - {form_id}")
+                        ws_load_log.append([grp, link_unit_dir, name_manager_dir, form_id])
+                        wb_load_log.save(log_file)
+            else:
+                  form_id = create_form_id(form_service, semester_dir, grp)
+                  add_info_form(form_service, form_id)
+                  add_header_form(form_service, form_id)
+                  
+                  location = 2
+                  for i in range(len(data_subject[grp])):
+                        print(f"{location} - {data_subject[grp][i]} - {data_teacher[grp][i]}")
+                        add_body_form(form_service, form_id, link_unit_dir, data_subject[grp][i], data_teacher[grp][i], location)
+                        location += 33
+                  
+                  name_file = "".join([grp, ".txt"])
+                  with open(os.path.join(link_unit, name_file), "w", encoding="utf-8") as file:
+                        file.write(f"https://docs.google.com/forms/d/{form_id}/viewform")
+
+                  print(f"Bắt đầu ghi mới vào file: {grp} - {link_unit_dir} - {name_manager_dir} - {form_id}")
+                  ws_load_log.append([grp, link_unit_dir, name_manager_dir, form_id])
+                  wb_load_log.save(log_file)
             
 
 def main():
