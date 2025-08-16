@@ -198,32 +198,9 @@ def main():
       files_response = os.path.join(root_folder, "responses", "242")
       form_service = authen_and_author(DISCOVERY_DOC, SCOPES, authentication_dir) # authen and author
 
-      while(True):
-            # Dòng viền trên cùng (màu cyan)
-            print("\033[1;36m" + "*" * 64 + "\033[0m")
+      detail_forms_survey(form_service, files_survey, files_response)
 
-            # Tiêu đề căn giữa
-            print("*" + "KHẢO SÁT SINH VIÊN".center(62) + "*")
-
-            # Dòng viền ngang sau tiêu đề
-            print("\033[1;36m" + "*" * 64 + "\033[0m")
-
-            # Các tùy chọn menu
-            print("*" + "1. Xuất file tổng quan về tình hình khảo sát".ljust(62) + "*")
-            print("*" + "2. Xuất file chi tiết khảo sát của sinh viên".ljust(62) + "*")
-            print("*" + "3. Thoát chương trình".ljust(62) + "*")
-
-            # Dòng viền dưới cùng (màu cyan)
-            print("\033[1;36m" + "*" * 64 + "\033[0m")
-            choice = input("Chọn chức năng: ")
-            if int(choice) == 1:
-                  total_do_survey(form_service, files_survey, files_response)
-            elif int(choice) == 2:
-                  detail_forms_survey(form_service, files_survey, files_response)
-            elif int(choice) == 3:
-                  break
-            else:
-                  print("\033[1;31m Không có trong danh sách lựa chọn \033[0m")
+      #total_do_survey(form_service, files_survey, files_response)
 
 if __name__ == "__main__":
       main()
